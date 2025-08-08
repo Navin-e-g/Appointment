@@ -1,0 +1,22 @@
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  flex-direction: row;
+  text-align: center;
+  justify-content: end;
+  padding-top: 5px;
+  padding-right: 20px;
+  align-items: center;
+}
+.navbar-menu a {
+  display: inline;
+  text-decoration: none;
+  color:black;
+  font-size: larger;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navbar-menu a:hover {
+  color: #007bff;
+}
