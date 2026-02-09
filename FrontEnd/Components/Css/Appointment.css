@@ -1,0 +1,53 @@
+body {
+  background: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 400px;
+  margin: 50px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.slot {
+  padding: 10px;
+  background: #3498db;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slot:hover {
+  background: #2980b9;
+}
+
+.slot.selected {
+  background: #2ecc71;
+}
+
+.result {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+}

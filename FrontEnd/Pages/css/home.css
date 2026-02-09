@@ -1,16 +1,4 @@
-.home-header{
-    background-color: rgba(0, 0, 0, 0.2);
-    height: 50px;
-    width: 800px;
-    border-radius: 20px;
-    align-items: center;
-    margin: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-}
+
 .home-container {
     display: flex;
     flex-direction: column;
@@ -19,13 +7,15 @@
     background-size: cover;
     align-items: center;
 }
-.home-header button{
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 20px;
-    margin-top: 7px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+.homecont{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+}
+.home-left, .home-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
