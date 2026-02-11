@@ -3,19 +3,18 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-image: url(D:\projects\vite-project\FrontEnd\src\assets\Home1.jpg);
     background-size: cover;
+    background-position: center;
     align-items: center;
 }
-.homecont{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 50px;
+
+.homecont {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 50px;
 }
-.home-left, .home-right {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
+

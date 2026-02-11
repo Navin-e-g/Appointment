@@ -1,13 +1,19 @@
 .card {
-  width: 300px;
+  width: 90%; /* Slight margin inside slide */
+  max-width: 400px;
+
   padding: 16px;
+
   border-radius: 12px;
+
   backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.8);
+  background: rgba(255, 255, 255, 0.85);
+
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+
   text-align: center;
-  margin: 20px;
- 
+
+  margin: auto;
 }
 
 .card-image {

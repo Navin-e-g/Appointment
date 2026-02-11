@@ -1,137 +1,95 @@
-import React, { useRef } from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import HomeContainer from "./HomeContainer";
+import "./css/Carousel.css";
 
-// Sample card data (you can replace this with API data)
-const cards = [
-  {
-    id: 1,
-    title: "Web Development",
-    description: "Build responsive and modern websites.",
-    image: "https://source.unsplash.com/400x300/?website,code",
-  },
-  {
-    id: 2,
-    title: "Machine Learning",
-    description: "Learn AI and ML models easily.",
-    image: "https://source.unsplash.com/400x300/?ai,technology",
-  },
-  {
-    id: 3,
-    title: "Mobile Apps",
-    description: "Create Android and iOS applications.",
-    image: "https://source.unsplash.com/400x300/?mobile,app",
-  },
-  {
-    id: 4,
-    title: "Cloud Computing",
-    description: "Deploy apps on the cloud securely.",
-    image: "https://source.unsplash.com/400x300/?cloud,server",
-  },
-  {
-    id: 5,
-    title: "Cyber Security",
-    description: "Protect systems and data.",
-    image: "https://source.unsplash.com/400x300/?cyber,security",
-  },
-];
+import SampleImage from "../src/assets/work.jpg";
 
-export default function CardCarousel() {
-  const carouselRef = useRef(null);
+const Carousel = ({ setHovered }) => {
+  const [index, setIndex] = useState(0);
 
-  const scrollLeft = () => {
-    carouselRef.current.scrollBy({
-      left: -300,
-      behavior: "smooth",
-    });
+  const cards = [
+    {
+      id: 1,
+      title: "Hair Styling",
+      description: "Professional hair styling services.",
+    },
+    {
+      id: 2,
+      title: "Beard Grooming",
+      description: "Get the perfect beard style.",
+    },
+    {
+      id: 3,
+      title: "Facial Treatment",
+      description: "Relaxing facial care services.",
+    },
+    {
+      id: 4,
+      title: "Hair Coloring",
+      description: "Premium hair coloring options.",
+    },
+  ];
+
+  const total = cards.length;
+
+  /* ===== Auto Slide ===== */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % total);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [total]);
+
+  /* ===== Next ===== */
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % total);
   };
 
-  const scrollRight = () => {
-    carouselRef.current.scrollBy({
-      left: 300,
-      behavior: "smooth",
-    });
+  /* ===== Prev ===== */
+  const prevSlide = () => {
+    setIndex((prev) =>
+      prev === 0 ? total - 1 : prev - 1
+    );
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-10">
-      {/* Header */}
-      <h2 className="text-3xl font-bold text-center mb-8">
-        Our Popular Courses
-      </h2>
+    <div className="carousel-wrapper">
 
-      {/* Carousel Wrapper */}
-      <div className="relative">
-        {/* Left Button */}
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 rounded-full shadow-lg"
-        >
-          <ChevronLeft />
-        </Button>
+      {/* Left */}
+      <button className="carousel-btn left" onClick={prevSlide}>
+        ❮
+      </button>
 
-        {/* Cards Container */}
-        <div
-          ref={carouselRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-12"
-        >
-          {cards.map((card) => (
-            <motion.div
-              key={card.id}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="min-w-[260px] sm:min-w-[300px]"
-            >
-              <Card className="rounded-2xl shadow-md hover:shadow-xl transition">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-full h-40 object-cover rounded-t-2xl"
-                />
-
-                <CardContent className="p-4">
-                  <h3 className="text-xl font-semibold mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {card.description}
-                  </p>
-
-                  <Button className="w-full rounded-xl">
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Right Button */}
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 rounded-full shadow-lg"
-        >
-          <ChevronRight />
-        </Button>
+      {/* Track */}
+      <div
+        className="carousel-track"
+        style={{
+          transform: `translateX(-${index * 100}%)`,
+        }}
+      >
+        {cards.map((card) => (
+          <div key={card.id} className="carousel-item">
+            <HomeContainer
+              image={SampleImage}
+              title={card.title}
+              description={card.description}
+              buttonText="Book Now"
+              setHovered={setHovered}
+            />
+          </div>
+        ))}
       </div>
+
+      {/* Right */}
+      <button className="carousel-btn right" onClick={nextSlide}>
+        ❯
+      </button>
     </div>
   );
-}
+};
 
-/*
-  NOTE:
-  Make sure you have these installed:
+export default Carousel;
 
-  npm install framer-motion lucide-react
-  npx shadcn-ui@latest init
-  npx shadcn-ui@latest add card button
 
-  Also add this plugin for hiding scrollbar (optional):
-  npm install tailwind-scrollbar-hide
-*/
+
