@@ -6,6 +6,7 @@ import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import SignUp from '../Pages/SignUp';
 import Appointment from '../Components/Appointment';
+import Details from '../Components/Details';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/appointment" element={<Appointment/>}/>
+        <Route path="/details" element={<Details/>}/>
       </Routes>
     </BrowserRouter>
   )

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Css/Appointment.css";
+import { useNavigate } from "react-router-dom";
 
 function Appointment() {
 
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
+
+  const navigate = useNavigate();
 
   const timeSlots = [
     "09:00 AM", "10:00 AM", "11:00 AM",
@@ -14,6 +17,16 @@ function Appointment() {
 
   const selectSlot = (slot) => {
     setSelectedSlot(slot);
+  };
+
+  // When clicking Book Now
+  const handleBookNow = () => {
+    navigate("/details", {
+      state: {
+        date: selectedDate,
+        slot: selectedSlot
+      }
+    });
   };
 
   return (
@@ -33,7 +46,6 @@ function Appointment() {
       <h3>Available Time Slots</h3>
 
       <div className="slots">
-
         {timeSlots.map((slot, index) => (
           <div
             key={index}
@@ -43,15 +55,16 @@ function Appointment() {
             {slot}
           </div>
         ))}
-
       </div>
 
-      {/* Result */}
+      {/* Book Now Button */}
       {selectedDate && selectedSlot && (
-        <div className="result">
-          Appointment Booked on <br />
-          {selectedDate} at {selectedSlot}
-        </div>
+        <button
+          className="book-btn"
+          onClick={handleBookNow}
+        >
+          Book Now
+        </button>
       )}
 
     </div>
@@ -59,3 +72,4 @@ function Appointment() {
 }
 
 export default Appointment;
+
