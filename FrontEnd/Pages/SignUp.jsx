@@ -4,8 +4,12 @@ import { X } from 'react-feather';
 import './css/sign.css';
 import Navbar from "../Components/Navbar";
 import bgimage from '../src/assets/signUp1.jpg';
+import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
+  const navigate = useNavigate();
   const [showForm,setShowForm] = useState(false);
+  const [role, setRole] = useState("customer");
   const handleGetStarted = () => {
     setShowForm(true);
   };
@@ -13,9 +17,20 @@ const Signup = () => {
     setShowForm(false);
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted');
-  };
+  e.preventDefault();
+
+  const role = e.target.role.value;
+
+  // Normally here you send data to backend
+
+  if (role === "partner") {
+    navigate("/partner-setup");
+  } else {
+    navigate("/dashboard");
+  }
+};
+
+
   return (
      <div className="signup-container" style={{ backgroundImage: `url(${bgimage})` }}>
       
@@ -65,6 +80,21 @@ const Signup = () => {
                 <label htmlFor="email">Email Address</label>
                 <input type="email" id="email" name="email" required />
               </div>
+              <div className="form-group">
+                <label htmlFor="role">Register As</label>
+
+                <select
+                  id="role"
+                  name="role"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  required
+                >
+                  <option value="customer">Customer</option>
+                  <option value="partner">Business Partner</option>
+                </select>
+              </div>
+
 
               <div className="form-group">
                 <label htmlFor="password">Password</label>

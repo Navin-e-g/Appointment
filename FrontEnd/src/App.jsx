@@ -7,6 +7,7 @@ import Login from '../Pages/Login';
 import SignUp from '../Pages/SignUp';
 import Appointment from '../Components/Appointment';
 import Details from '../Components/Details';
+import PartnerSetup from '../Components/PartnerSetup';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/appointment" element={<Appointment/>}/>
         <Route path="/details" element={<Details/>}/>
+        <Route path="/partner-setup" element={<PartnerSetup/>}/>
       </Routes>
     </BrowserRouter>
   )
